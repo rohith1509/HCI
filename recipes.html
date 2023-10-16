@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visually Impaired Recipe Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px; /* Increased font size for better readability */
+            color: #333; /* Dark text color */
+            background-color: #f8f8f8; /* Light background color */
+            margin: 0;
+            padding: 0;
+        }
+        * {
+  box-sizing: border-box;
+}
+
+
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 33.3%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 33.3%;
+
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+        h1, h2 {
+            color:black; /* Slightly darker header text color for better contrast */
+        }
+
+        .recipe {
+            margin: 20px;
+            background-color: #fff; /* White background for recipe sections */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners for sections */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-top: 10px; /* Add some space between paragraphs */
+            color:black
+        }
+        body{
+    background-color:black;
+    background-size: cover;
+    background-blend-mode: darken;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+}
+
+.container h1{
+    color: rgb(255, 0, 0);
+    margin-left: 40px;
+    font-size: 55px;
+    cursor: pointer;
+}
+
+.navbar ul li{
+    display: inline-block;
+    padding: 18px;
+    text-transform: uppercase;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 4px;
+    transition: 3.5s;
+}
+
+.navbar ul li a:hover{
+    box-shadow: 0 3px 50px orangered inset,0 3px 50px orangered inset,
+    0 3px 50px orangered inset,0 3px 50px orangered inset;
+}
+    </style>
+</head>
+
+<body>
+   
+    <div class="container">
+        <h1>Visual Flavours</h1>
+        <div class="navbar">
+            <ul>
+                <li><a href="C:\Users\panch\Desktop\test\home.html">Home</a></li>
+                <li><a href="C:\Users\panch\Desktop\test\recipes.html">Recipes</a></li>
+                <li><a href="#Contact-us">Contact Us</a></li>
+                <li><a href="#Review">Review</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="recipes">
+        <div class="row">
+            <div class="column">
+              <div class="card" id="recipe1">
+                <h2>Chicken Alfredo</h2>
+                <img src="C:\Users\panch\Desktop\test\images\CA.jpg" width="300" height="300" alt="Recipe 1 Image">
+                <p>Chicken Alfredo features pasta drenched in an ultra-rich and creamy sauce, topped with juicy strips of seared chicken.</p>
+    
+              </div>
+            </div>
+            <div class="column">
+              <div class="card" id="recipe2"><div class="x"></div>
+              <h2>Pancakes</h2>
+              <img src="C:\Users\panch\Desktop\test\images\pancakes.jpg"  width="327" height="327" alt="Recipe 2 Image">
+              <p>Fluffy Butter pancakes made with flour, eggs, milk, butter, baking powder, sugar, vanilla, cooked to golden perfection.</p>
+            
+            </div>
+            </div>
+            <div class="column">
+              <div class="card" id="recipe3">
+                <h2>Sandwich</h2>
+                <img src="C:\Users\panch\Desktop\test\images\sandwich.jpg" width="300" height="400" alt="Recipe 3 Image">
+            <p>Veg grilled sandwich with bell peppers, tomatoes, onions, and cheese, seasoned and toasted for a delectable crunch</p>
+              </div>
+            </div>
+           
+          </div>
+       
+    <script src="script.js"></script>
+    <script src="scrip1.js"></script>
+</body>
+
+</html>

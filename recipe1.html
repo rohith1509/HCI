@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 20px; /* Increased font size for better readability */
+            color: #333; /* Dark text color */
+            background-color: #f8f8f8; /* Light background color */
+            margin: 0;
+            padding: 0;
+        }
+        .container h1{
+    color: rgb(255, 0, 0);
+    margin-left: 40px;
+    font-size: 55px;
+    cursor: pointer;
+}
+body{
+    background-color:black;
+    background-size: cover;
+    background-blend-mode: darken;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+}
+.navbar ul li{
+    display: inline-block;
+    padding: 18px;
+    text-transform: uppercase;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 4px;
+    transition: 3.5s;
+}
+
+.navbar ul li a:hover{
+    box-shadow: 0 3px 50px orangered inset,0 3px 50px orangered inset,
+    0 3px 50px orangered inset,0 3px 50px orangered inset;
+}
+        h1, h2 {
+            color:black; /* Slightly darker header text color for better contrast */
+        }
+
+        .recipe {
+            margin: 20px;
+            background-color: #fff; /* White background for recipe sections */
+            padding: 20px;
+            color:black;
+            border-radius: 10px; /* Rounded corners for sections */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+           
+        }
+        #ingredient-list li {
+            margin-bottom: 25px;
+            color:black; /* Adds a 10px gap below each list item */
+}
+
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-top: 10px; /* Add some space between paragraphs */
+            color: black;
+        }
+        
+    </style>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+    var isPlaying = false;
+    var timeoutIds = [];
+
+    document.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            if (!isPlaying) {
+                playAudiosWithInterval();
+            }
+        }
+    });
+
+    function playAudiosWithInterval() {
+        var audios = document.querySelectorAll('audio');
+        var interval = 5000; // 5 seconds
+
+        audios.forEach(function(audio, index) {
+            var timeoutId = setTimeout(function() {
+                if (isPlaying) {
+                    audio.play();
+                    audio.addEventListener('ended', function() {
+                        if (index === audios.length - 1) {
+                            setTimeout(function() {
+                                currentIndex = (currentIndex + 1) % audios.length;
+                                currentAudio = audios[currentIndex];
+                                playAudiosWithInterval();
+                            }, interval);
+                        }
+                    });
+                }
+            }, index * interval);
+
+            timeoutIds.push(timeoutId);
+        });
+
+        isPlaying = true;
+    }
+
+    var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    var audios = document.querySelectorAll('audio');
+
+    recognition.onresult = function(event) {
+        var command = event.results[event.results.length - 1][0].transcript.toLowerCase();
+        console.log('Command:', command);
+
+        if (command.includes('play')) {
+            if (currentAudio) {
+                if (currentAudio.paused && currentAudio.currentTime > 0) {
+                    currentAudio.play();
+                } else {
+                    currentIndex = (currentIndex + 1) % audios.length;
+                    currentAudio = audios[currentIndex];
+                    currentAudio.play();
+                }
+            } else if (currentIndex === -1) {
+                playAudiosWithInterval();
+            }
+        } else if (command.includes('stop')) {
+            audios.forEach(function(audio) {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            isPlaying = false;
+            timeoutIds.forEach(function(id) {
+                clearTimeout(id);
+            });
+        } else if (command.includes('next')) {
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            currentIndex = (currentIndex + 1) % audios.length;
+            currentAudio = audios[currentIndex];
+            setTimeout(function() {
+                currentAudio.play();
+            }, 5000);
+        }
+    };
+
+    recognition.onend = function() {
+        recognition.start();
+    };
+
+    recognition.start();
+
+    var currentAudio = null;
+    var currentIndex = -1;
+
+    audios.forEach(function(audio, index) {
+        audio.addEventListener('play', function() {
+            currentAudio = this;
+            currentIndex = index;
+        });
+
+        audio.addEventListener('pause', function() {
+            currentAudio = null;
+        });
+    });
+});
+
+    </script>
+</head>
+</html>
+
+<body>
+    <div class="container">
+        <h1>Visual Flavours</h1>
+        <div class="navbar">
+            <ul>
+                <li><a href="C:\Users\panch\Desktop\test\home.html">Home</a></li>
+                <li><a href="C:\Users\panch\Desktop\test\recipes.html">Recipes</a></li>
+                <li><a href="#Contact-us">Contact Us</a></li>
+                <li><a href="#Review">Review</a></li>
+            </ul>
+        </div>
+    </div>
+    <section id="recipes" class="recipe">
+        <h2>Ingredients</h2>
+        <ul id="ingredient-list">
+            <li>
+                <img src="C:\Users\panch\Desktop\test\breast.webp" width="200" height="200" alt="Chicken Breasts"><br>
+                2 boneless, skinless chicken breasts (about 1.3 lb. total) ($6.49)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\breas.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\italian_seasoning.jpg " width="200" height="200" alt="Italian Seasoning"><br>
+                2 tsp Italian seasoning ($0.20)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\italian_seasoning.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\cooking_oil.jpg" width="200" height="200"  alt="Cooking Oil"><br>
+                1 Tbsp cooking oil ($0.04)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\cooking_oil.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\butter.webp" width="200" height="200"  alt="Butter"><br>
+                2 Tbsp butter ($0.22)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\butter.mp3" width="200" height="200" type="audio/mpeg"><br>
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\garlic.jpg" width="200" height="200" alt="Garlic"><br>
+                4 cloves garlic, minced ($0.32)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\garlic.mp3"  type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\heavy_cream.jpg" width="200" height="200" alt="Heavy Cream"><br>
+                1 cup heavy cream ($1.25)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\heavy_cream.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\parmesan.jpg" width="200" height="200" alt="Grated Parmesan"><br>
+                3/4 cup grated Parmesan ($1.08)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\parmesan.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\salt.webp" width="200" height="200" alt="Salt"><br>
+                1/4 tsp salt ($0.02)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\salt.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\pepper.jpeg" width="200" height="200" alt="Pepper"><br>
+                1/4 tsp pepper ($0.02)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\pepper.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\parsley.jpg" width="200" height="200" alt="Chopped Parsley"><br>
+                1 Tbsp chopped parsley (optional garnish) ($0.10)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\parsley.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+            <li>
+                <img src="C:\Users\panch\Desktop\test\images\fettuccine.jpg" width="200" height="200" alt="Fettuccine"><br>
+                8 oz. fettuccine ($0.88)
+                <audio controls>
+                    <source src="C:\Users\panch\Desktop\test\audio\fettuccine.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+        </ul>
+        
+
+        <h2>Instructions</h2>
+        <p>
+                Season both sides of the chicken breast with Italian seasoning and a pinch of salt.<audio controls>
+                    <source src="audio/step1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Heat a large skillet over medium. Once hot, add the cooking oil and swirl to coat the surface.<audio controls>
+                    <source src="audio/step2.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Add the chicken to the skillet and cook for about 7-8 minutes on each side, or until browned on the outside and cooked through.<audio controls>
+                    <source src="audio/step3.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Remove the chicken to a clean plate and turn the heat under the skillet down to medium-low.<audio controls>
+                    <source src="audio/step4.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Add the butter and minced garlic to the skillet. Stir and cook the garlic in the melted butter for about two minutes,dissolving the browned bits from the bottom of the skillet as you stir. <audio controls>
+                    <source src="audio/step5.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Add the heavy cream and whisk to combine, dissolving any remaining browned bits. Allow the cream to come up to a simmer. <audio controls>
+                    <source src="audio/step6.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+
+                While waiting for the cream to simmer, bring a pot of water to a boil for the fettuccine.<audio controls>
+                    <source src="audio/step7.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Once boiling, add the pasta and continue to boil until tender (about 7 minutes).  <audio controls>
+                    <source src="audio/step8.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Reserve about ½ cup of the starchy cooking water just before draining the pasta. <audio controls>
+                    <source src="audio/step9.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Once the cream is simmering, add the grated Parmesan to the skillet. <audio controls>
+                    <source src="audio/step10.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Continue to whisk and stir until the Parmesan has melted into the sauce and the sauce has begun to simmer. <audio controls>
+                    <source src="audio/step11.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Simmer the sauce for a few minutes, or until it becomes slightly thicker. <audio controls>
+                    <source src="audio/step12.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Add salt and pepper to the sauce to taste.Add the drained pasta to the skillet with the creamy sauce and toss to combine. <audio controls>
+                    <source src="audio/step13.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                If the sauce becomes too thick, add a couple of tablespoons of the reserved pasta water and toss to combine with the sauce.<audio controls>
+                    <source src="audio/step14.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio> <br><br>
+                Slice the cooked chicken breasts and serve it atop the creamy pasta. Garnish with chopped parsley, if desired.
+                <audio controls>
+                    <source src="audio/step15.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </p>
+    </section>
+
+    <section id="kitchen-help" class="recipe">
+        <!-- Add content for Kitchen Help section -->
+    </section>
+
+    <section id="contact-us" class="recipe">
+        <!-- Add content for Contact Us section -->
+    </section>
+
+    <footer>
+        <p>&copy; 2023 VisualFlavors</p>
+    </footer>
+
+</body>
+</html>
+
