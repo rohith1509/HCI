@@ -1,6 +1,6 @@
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 49) { // Check if key pressed is '1'
-        window.location.href = 'C:/Users/panch/Desktop/test/recipe1.html'; // Redirect to recipe1.html
+        window.location.href = 'recipe1.html'; // Redirect to recipe1.html
     } else if (event.keyCode === 50) { // Check if key pressed is '2'
         window.location.href = 'recipe2.html'; // Redirect to recipe2.html
     } else if (event.keyCode === 51) { // Check if key pressed is '3'
