@@ -165,24 +165,10 @@ body{
     </style>
     <title>Visual Flavours</title>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const audioFiles = {
-                home: 'home.mp3',
-                recipes: 'recipes.mp3',
-                contact: 'contact.mp3',
-                review: 'review.mp3'
-            };
-
-            const navItems = document.querySelectorAll('.navbar ul li a');
-
-            navItems.forEach(item => {
-                item.addEventListener('mouseover', function() {
-                    const id = this.getAttribute('href').substring(1);
-                    const audio = new Audio(audioFiles[id]);
-                    audio.play();
-                });
-            });
-        });
+        function playAudio(id) {
+            const audio = new Audio(id + '.mp3');
+            audio.play();
+        }
     </script>
 
 </head>
@@ -191,7 +177,7 @@ body{
         <h1>Visual Flavours</h1>
         <div class="navbar">
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" onmouseover="playAudio('home')">Home</a></li>
                 <li><a href="recipes.html">Recipes</a></li>
                 <li><a href="#Contact-us">Contact Us</a></li>
                 <li><a href="#Review">Review</a></li>
