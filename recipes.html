@@ -117,6 +117,32 @@
     0 3px 50px orangered inset,0 3px 50px orangered inset;
 }
     </style>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const recipes = [
+                "Chicken Alfredo",
+                "Pancakes",
+                "Sandwich"
+            ];
+
+            const recipeElements = document.querySelectorAll('.card');
+
+            function speakRecipeName(index) {
+                const utterance = new SpeechSynthesisUtterance(recipes[index]);
+                window.speechSynthesis.speak(utterance);
+            }
+
+            recipeElements.forEach((element, index) => {
+                element.addEventListener('mouseover', function() {
+                    speakRecipeName(index);
+                });
+            });
+
+            // Read out instructions on page load
+            const instructionUtterance = new SpeechSynthesisUtterance("Press 1 for Chicken Alfredo, Press 2 for Pancakes, Press 3 for Sandwich");
+            window.speechSynthesis.speak(instructionUtterance);
+        });
+    </script>    
 </head>
 
 <body>
