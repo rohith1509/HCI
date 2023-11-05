@@ -119,30 +119,26 @@
     </style>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const recipes = [
-                "Chicken Alfredo",
-                "Pancakes",
-                "Sandwich"
-            ];
-
             const recipeElements = document.querySelectorAll('.card');
 
-            function speakRecipeName(index) {
-                const utterance = new SpeechSynthesisUtterance(recipes[index]);
+            function speakRecipeName(id) {
+                const recipeName = document.getElementById(id).querySelector('h2').innerText;
+                const utterance = new SpeechSynthesisUtterance(recipeName);
+                window.speechSynthesis.cancel(); // Cancel any ongoing speech
                 window.speechSynthesis.speak(utterance);
             }
-
-            recipeElements.forEach((element, index) => {
-                element.addEventListener('mouseover', function() {
-                    speakRecipeName(index);
-                });
-            });
 
             // Read out instructions on page load
             const instructionUtterance = new SpeechSynthesisUtterance("Press 1 for Chicken Alfredo, Press 2 for Pancakes, Press 3 for Sandwich");
             window.speechSynthesis.speak(instructionUtterance);
+
+            recipeElements.forEach(element => {
+                element.addEventListener('mouseover', function() {
+                    speakRecipeName(this.id);
+                });
+            });
         });
-    </script> 
+    </script>
 </head>
 
 <body>
