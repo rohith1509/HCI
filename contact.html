@@ -15,10 +15,32 @@
         padding: 0;
     }
     .container {
-        max-width: 1170px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 22px;
+        padding: 20px 40px;
+    }
+    .container h1 {
+        cursor: pointer;
+        font-size: 55px;
+    }
+    .navbar ul {
+        list-style-type: none;
+    }
+    .navbar ul li {
+        display: inline-block;
+        padding: 10px;
+        text-transform: uppercase;
+    }
+    .navbar ul li a {
+        text-decoration: none;
+        color: #fff;
+        padding: 4px;
+        transition: 0.3s;
+    }
+    .navbar ul li a:hover {
+        box-shadow: 0 3px 15px orangered inset;
     }
     .contact-form {
         background: rgba(255, 255, 255, 0.2);
@@ -60,6 +82,18 @@
 </style>
 </head>
 <body>
+
+<div class="container">
+    <h1>Visual Flavours</h1>
+    <div class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="review.html">Review</a></li>
+        </ul>
+    </div>
+</div>
 
 <div class="container">
     <h2>Contact Us</h2>
