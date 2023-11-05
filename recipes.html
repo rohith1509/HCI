@@ -127,6 +127,10 @@
                 window.speechSynthesis.cancel(); // Cancel any ongoing speech
                 window.speechSynthesis.speak(utterance);
             }
+             function playAudio(id) {
+            const audio = new Audio(id + '.mp3');
+            audio.play();
+        }
 
             // Read out instructions on page load
             const instructionUtterance = new SpeechSynthesisUtterance("Press 1 for Chicken Alfredo, Press 2 for Pancakes, Press 3 for Sandwich");
@@ -147,7 +151,7 @@
         <h1>Visual Flavours</h1>
         <div class="navbar">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" >Home</a></li>
                 <li><a href="recipes.html">Recipes</a></li>
                 <li><a href="#Contact-us">Contact Us</a></li>
                 <li><a href="#Review">Review</a></li>
