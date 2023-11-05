@@ -42,13 +42,13 @@
     .navbar ul li a:hover {
         box-shadow: 0 3px 15px orangered inset;
     }
-    .contact-form {
-        background: rgba(255, 255, 255, 0.2);
+    .review-form {
+        max-width: 600px;
+        margin: 20px auto;
         padding: 20px;
-        box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.3);
-        margin-top: 50px;
-        max-width: 600px; /* Added max-width */
-        margin: 0 auto; /* Center the form */
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
     .form-group {
         margin-bottom: 15px;
@@ -99,7 +99,7 @@
 
 <div class="container">
     <h2>Contact Us</h2>
-    <form class="contact-form" action="your-server-side-code" method="POST">
+    <form class="review-form" action="your-server-side-code" method="POST">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
