@@ -42,13 +42,13 @@
     .navbar ul li a:hover {
         box-shadow: 0 3px 15px orangered inset;
     }
-    .review-form {
-        max-width: 800px; /* Adjusted max-width */
-        margin: 20px auto;
-        padding: 20px;
+    .contact-form {
         background: rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        padding: 20px;
+        box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.3);
+        margin-top: 50px;
+        max-width: 600px;
+        margin: 0 auto;
     }
     .form-group {
         margin-bottom: 15px;
@@ -62,7 +62,7 @@
     input[type="email"],
     input[type="tel"],
     textarea {
-        width: 100%;
+        width: calc(100% - 22px);
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
@@ -98,8 +98,7 @@
 </div>
 
 <div class="container">
-
-    <form class="review-form" action="your-server-side-code" method="POST">
+    <form class="contact-form" action="your-server-side-code" method="POST">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
