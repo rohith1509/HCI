@@ -136,5 +136,13 @@
             </form>
         </div>
     </div>
+     <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            var message = new SpeechSynthesisUtterance("Your review has been submitted.Thank you for giving us a review.");
+            window.speechSynthesis.speak(message);
+            setTimeout(function() {
+                alert("Your review has been submitted.Thank you for giving us a review.");
+            }, 100); // 100 milliseconds delay
 </body>
 </html>
