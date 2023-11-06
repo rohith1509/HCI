@@ -127,8 +127,8 @@
         function handleSubmit(event) {
             event.preventDefault();
             alert("Thank you! We will be in touch with you soon.");
-            var audio = new Audio('path_to_your_audio_file.mp3');
-            audio.play();
+            var message = new SpeechSynthesisUtterance("Thank you! We will be in touch with you soon.");
+            window.speechSynthesis.speak(message);
         }
     </script>
 </body>
