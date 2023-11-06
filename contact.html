@@ -128,9 +128,9 @@
             event.preventDefault();
             var message = new SpeechSynthesisUtterance("Thank you! We will be in touch with you soon.");
             window.speechSynthesis.speak(message);
-            alert("Thank you! We will be in touch with you soon.");
-           
-        }
+            setTimeout(function() {
+                alert("Thank you! We will be in touch with you soon.");
+            }, 100); // 100 milliseconds delay
     </script>
 </body>
 </html>
